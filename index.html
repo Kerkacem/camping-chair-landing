@@ -326,6 +326,9 @@
             border-color: #059669; 
             transform: scale(1.05);
         }
+        .gallery-thumb.active { 
+            box-shadow: 0 0 0 2px #059669;
+        }
         
         .cta-glow {
             box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
@@ -382,7 +385,43 @@
             right: 0;
             z-index: 50;
             transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
+        
+        /* Fix form inputs on mobile - ensure text is visible */
+        .form-input {
+            -webkit-text-fill-color: white;
+            color: white;
+        }
+        .form-input::placeholder {
+            -webkit-text-fill-color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Fix select dropdown styling on mobile */
+        select.form-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 12px center;
+            background-size: 20px;
+        }
+        
+        /* Prevent text overflow on mobile */
+        * { word-wrap: break-word; overflow-wrap: break-word; }
+        
+        /* Admin button fade in animation */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Fix iOS rubber-band scrolling */
+        html { -webkit-overflow-scrolling: touch; }
+        
+        /* Fix mobile viewport height */
+        .min-h-screen { min-height: 100vh; min-height: -webkit-fill-available; }
         
         .stock-progress {
             background: linear-gradient(90deg, #f59e0b 0%, #ef4444 100%);
@@ -391,10 +430,10 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.4s ease;
         }
         .accordion-content.open {
-            max-height: 500px;
+            max-height: 600px;
         }
         
         .form-input {
@@ -453,12 +492,16 @@
             background: white;
             min-height: 100vh;
             padding: 20px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .admin-tab {
             padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .admin-tab.active {
             background: #059669;
@@ -487,10 +530,13 @@
         .status-delivered { background: #c4b5fd; color: #5b21b6; }
         .status-abandoned { background: #fee2e2; color: #991b1b; }
         
-        /* Performance: CSS containment for below-fold sections */
-        .reviews-section, .delivery-section, .specs-section, .order-section, .faq-section {
-            content-visibility: auto;
-            contain-intrinsic-size: 0 500px;
+        /* Mobile: bottom padding to prevent sticky CTA overlap */
+        body { padding-bottom: 90px; }
+        @media (min-width: 1024px) { body { padding-bottom: 0; } }
+        
+        /* Mobile: admin access button above sticky CTA */
+        @media (max-width: 1023px) {
+            #adminAccess { bottom: 90px !important; z-index: 60 !important; }
         }
     </style>
 </head>
@@ -1057,7 +1103,7 @@
                             onchange="updateCommunes(); updateShipping();"
                             class="w-full px-4 py-3 rounded-xl border-2 border-white/30 bg-white/10 text-white focus:outline-none focus:border-white form-input"
                         >
-                            <option value="" class="text-gray-800">اختر ولايتك</option>
+                            <option value="" disabled selected class="text-gray-800">اختر ولايتك</option>
                         </select>
                     </div>
                     
@@ -1070,7 +1116,7 @@
                             required
                             class="w-full px-4 py-3 rounded-xl border-2 border-white/30 bg-white/10 text-white focus:outline-none focus:border-white form-input"
                         >
-                            <option value="" class="text-gray-800">اختر بلديتك</option>
+                            <option value="" disabled selected class="text-gray-800">اختر بلديتك</option>
                         </select>
                     </div>
                     
@@ -1381,7 +1427,7 @@
     </div>
 
     <!-- Admin Access Button (Hidden - Triple click to activate) -->
-    <div id="adminAccess" class="fixed bottom-20 right-4 z-40" style="display: none;">
+    <div id="adminAccess" class="fixed bottom-24 right-4 z-[60]" style="display: none;">
         <button onclick="openAdminLogin()" class="bg-gray-800 hover:bg-gray-900 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110">
             ⚙️
         </button>
@@ -1525,7 +1571,7 @@
             const wilayaCode = document.getElementById('wilaya').value;
             const communeSelect = document.getElementById('commune');
             
-            communeSelect.innerHTML = '<option value="" class="text-gray-800">اختر بلديتك</option>';
+            communeSelect.innerHTML = '<option value="" disabled selected class="text-gray-800">اختر بلديتك</option>';
             
             if (wilayaCode) {
                 const wilaya = wilayas.find(w => w.code === wilayaCode);
@@ -1650,6 +1696,9 @@
         // Form submission
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Prevent double-tap zoom on mobile
+            if (e.detail > 1) return;
             
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
@@ -2025,7 +2074,9 @@
         let clickCount = 0;
         let clickTimer;
         
-        document.querySelector('footer').addEventListener('click', function() {
+        document.querySelector('footer').addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             clickCount++;
             
             if (clickTimer) {
@@ -2033,13 +2084,15 @@
             }
             
             if (clickCount >= 3) {
-                document.getElementById('adminAccess').style.display = 'block';
+                const adminAccess = document.getElementById('adminAccess');
+                adminAccess.style.display = 'block';
+                adminAccess.style.animation = 'fadeInUp 0.3s ease';
                 clickCount = 0;
             }
             
             clickTimer = setTimeout(() => {
                 clickCount = 0;
-            }, 500);
+            }, 600);
         });
 
         // Smooth scroll
@@ -2055,6 +2108,28 @@
 
         // Initialize
         initWilayas();
+        
+        // Prevent zoom on input focus (iOS)
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('focus', function() {
+                if (window.innerWidth < 768) {
+                    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+                }
+            });
+            el.addEventListener('blur', function() {
+                document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0');
+            });
+        });
+        
+        // Touch feedback for buttons
+        document.querySelectorAll('button, a[href="#order-form"]').forEach(el => {
+            el.addEventListener('touchstart', function() {
+                this.style.opacity = '0.8';
+            });
+            el.addEventListener('touchend', function() {
+                this.style.opacity = '1';
+            });
+        });
     </script>
 </body>
 </html>
