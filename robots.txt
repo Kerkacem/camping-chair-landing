@@ -1,0 +1,35 @@
+# robots.txt for Alger Shop - Camping Chair Landing Page
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://kerkacem.github.io/camping-chair-landing/sitemap.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 1
+
+# Disallow admin areas
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /cart/
+
+# Allow search engines to index product pages
+Allow: /products/
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+
+# Social media crawlers
+User-agent: FacebookExternalHit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /

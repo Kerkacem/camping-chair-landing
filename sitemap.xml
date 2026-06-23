@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:content="http://purl.org/rss/1.0/modules/content/"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Main Product Page -->
+  <url>
+    <loc>https://kerkacem.github.io/camping-chair-landing/</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://files.hanotify.store//media//users/19246/stores/21830/products/436355/255155.webp</image:loc>
+      <image:title>كرسي تخييم محمول وقابل للطي بظهر ممتد 95 سم</image:title>
+      <image:caption>كرسي تخييم محمول بوزن خفيف 1.72 كجم يتحمل حتى 120 كجم</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://files.hanotify.store//media//users/19246/stores/21830/products/436355/255157.webp</image:loc>
+      <image:title>كرسي تخييم قابل للطي - منظر جانبي</image:title>
+      <image:caption>تصميم أنيق وعملي للاستخدام الخارجي</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://files.hanotify.store//media//users/19246/stores/21830/products/436355/255158.webp</image:loc>
+      <image:title>كرسي مخيم مطوي - حجم صغير للحمل</image:title>
+      <image:caption>سهل الطي والحمل في أي مكان</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://files.hanotify.store//media//users/19246/stores/21830/products/436355/255159.webp</image:loc>
+      <image:title>كرسي راحة خارجي - هيكل فولاذي كربوني</image:title>
+      <image:caption>هيكل متين ومقاوم للصدأ</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://files.hanotify.store//media//users/19246/stores/21830/products/436355/255160.webp</image:loc>
+      <image:title>كرسي تخييم محمول مع وسادة رأس مدمجة</image:title>
+      <image:caption>راحة إضافية مع مسند ظهر 95 سم</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://files.hanotify.store//media//users/19246/stores/21830/products/436355/255161.webp</image:loc>
+      <image:title>كرسي نوم خارجي - مريح للاسترخاء</image:title>
+      <image:caption>مناسب للتخييم والرحلات والنزهات</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://files.hanotify.store//media//users/19246/stores/21830/products/436355/255162.webp</image:loc>
+      <image:title>كرسي تخييم - تفاصيل الارتكازات</image:title>
+      <image:caption>تفاصيل عالية الجودة</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://files.hanotify.store//media//users/19246/stores/21830/products/436355/255163.webp</image:loc>
+      <image:title>كرسي مخيم محمول - في الاستخدام الخارجي</image:title>
+      <image:caption>مثالي للمخيمات والرحلات</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://files.hanotify.store//media//users/19246/stores/21830/products/436355/255164.webp</image:loc>
+      <image:title>كرسي قابل للطي - الوزن الخفيف</image:title>
+      <image:caption>وزن خفيف 1.72 كجم فقط</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://files.hanotify.store//media//users/19246/stores/21830/products/436355/255165.webp</image:loc>
+      <image:title>كرسي رياضي خارجي - يتحمل حتى 120 كجم</image:title>
+      <image:caption>قوة عالية تتحمل حتى 120 كجم</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://files.hanotify.store//media//users/19246/stores/21830/products/436355/255166.webp</image:loc>
+      <image:title>كرسي تخييم محمول - العرض الكامل</image:title>
+      <image:caption>عرض كامل مع جميع المواصفات</image:caption>
+    </image:image>
+  </url>
+  
+</urlset>
